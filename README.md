@@ -1,3 +1,25 @@
+## Using Docker
+
+1. [Install Docker](https://docs.docker.com/get-docker/) on your machine.
+1. Build your container: `docker build -t nextjs-docker .`.
+1. Run your container: `docker run -p 3000:3000 nextjs-docker`.
+
+You can view your images created with `docker images`.
+
+### In existing projects
+
+To add support for Docker to an existing project, just copy the [`Dockerfile`](https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile) into the root of the project and add the following to the `next.config.js` file:
+
+```js
+// next.config.js
+module.exports = {
+  // ... rest of the configuration.
+  output: "standalone",
+};
+```
+
+This will build the project as a standalone app inside the Docker image.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
