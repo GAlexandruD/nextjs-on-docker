@@ -16,8 +16,9 @@ if [[ "$NEXT_VERSION" != "$CURRENT_VERSION" ]]; then
   npx -y create-next-app@latest ../nextjs-files --yes
 
   # Update version in nextjs-version.txt
-  echo "$NEXT_VERSION" > nextjs-version.txt
+  echo "$NEXT_VERSION" > ../nextjs-version.txt
 
+  cd ..
   # Adds the files to the repository
   git add .
   git commit -m "Update to Next.js v$NEXT_VERSION"
