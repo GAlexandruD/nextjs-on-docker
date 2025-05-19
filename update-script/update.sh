@@ -19,12 +19,13 @@ if [[ "$NEXT_VERSION" != "$CURRENT_VERSION" ]]; then
   NEXT_CONFIG="../nextjs-files/next.config.ts"
   
   if grep -q "output:" "$NEXT_CONFIG"; then
-    # Replace existing output value
+    # Replace existing output value (handles both single and double quotes)
     sed -i "s/output: *['\"][^'\"]*['\"]/output: 'standalone'/" "$NEXT_CONFIG"
   else
-    # Insert output: 'standalone', just before the export
-    sed -i "/module.exports *= *{.*/a \  output: 'standalone'," "$NEXT_CONFIG"
+    # Insert `output: 'standalone'` just after the opening `{` in nextConfig object
+    sed -i "/const nextConfig: NextConfig = {/,/};/ s|{|\{\n  output: 'standalone',|" "$NEXT_CONFIG"
   fi
+  
   echo "Set output: 'standalone' in $NEXT_CONFIG"
 
 
