@@ -14,7 +14,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
-COPY nextjs-files/package.json nextjs-files/yarn.lock* nextjs-files/package-lock.json* nextjs-files/pnpm-lock.yaml* nextjs-files/.npmrc* ./nextjs-files/
+COPY ./nextjs-files/package.json ./nextjs-files/yarn.lock* ./nextjs-files/package-lock.json* ./nextjs-files/pnpm-lock.yaml* ./nextjs-files/.npmrc* ./nextjs-files/
 RUN \
   if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
   elif [ -f package-lock.json ]; then npm ci; \
